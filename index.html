@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="theme-color" content="#050914">
+<title>XuperTV · VIDAA</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div id="app">
+  <aside class="sidebar">
+    <div class="brand"><img src="images/brand_rail.png" alt="XuperTV"><span>VIDAA EDITION</span></div>
+    <nav id="navigation" aria-label="Navegación principal">
+      <button data-page="home" class="nav active"><img src="images/nav/home.png">Inicio</button>
+      <button data-page="favs" class="nav"><img src="images/nav/favs.png">Favoritos</button>
+      <button data-page="live" class="nav"><img src="images/nav/live.png">TV en vivo</button>
+      <button data-page="movies" class="nav"><img src="images/nav/movies.png">Películas</button>
+      <button data-page="series" class="nav"><img src="images/nav/series.png">Series</button>
+      <button data-page="kids" class="nav"><img src="images/nav/kids.png">Infantil</button>
+      <button data-page="anime" class="nav"><img src="images/nav/anime.png">Anime</button>
+      <button data-page="search" class="nav"><img src="images/nav/search.png">Buscar</button>
+      <button data-page="history" class="nav"><img src="images/nav/history.png">Historial</button>
+      <button data-page="settings" class="nav"><img src="images/nav/settings.png">Ajustes</button>
+    </nav>
+    <div class="sidebar-foot">XUPERTV <b>•</b> VIDAA</div>
+  </aside>
+  <main class="main">
+    <header class="topbar"><div><div class="eyebrow" id="eyebrow">XUPERTV · CATÁLOGO</div><h1 id="page-title">Inicio</h1></div><div class="top-actions"><span id="connection-state" class="state">Sin conexión</span><button id="settings-shortcut" class="icon-btn" aria-label="Ajustes">⚙</button></div></header>
+    <section id="home-page" class="page visible">
+      <div class="hero"><div class="hero-copy"><span class="tag">ENTRETENIMIENTO</span><h2>Todo tu contenido<br><em>en un solo lugar.</em></h2><p>TV en vivo, películas y series con tu proveedor.</p><button class="primary" data-go="live">Explorar contenido <b>›</b></button></div><img class="hero-mark" src="images/brand_mini.png" alt=""></div>
+      <div class="section-head"><h2>Accesos rápidos</h2></div><div class="quick-grid">
+       <button data-go="live"><img src="images/nav/live.png"><span>TV en vivo</span></button><button data-go="movies"><img src="images/nav/movies.png"><span>Películas</span></button><button data-go="series"><img src="images/nav/series.png"><span>Series</span></button><button data-go="favs"><img src="images/nav/favs.png"><span>Favoritos</span></button>
+      </div>
+      <div class="section-head"><h2>Continuar viendo</h2><span>Tu historial reciente</span></div><div id="home-history" class="card-row"></div>
+    </section>
+    <section id="catalog-page" class="page">
+      <div class="catalog-layout"><aside id="categories" class="categories"></aside><div class="catalog-content"><div id="catalog-message" class="message">Configura una conexión en Ajustes para cargar tu catálogo.</div><div id="catalog-grid" class="catalog-grid"></div><button id="load-more" class="secondary hidden">Cargar más</button></div></div>
+    </section>
+    <section id="search-page" class="page"><div class="searchbar"><span>⌕</span><input id="search-input" placeholder="Buscar películas, series o canales..." autocomplete="off"><button id="search-button" class="primary">Buscar</button></div><div id="search-results" class="catalog-grid"></div></section>
+    <section id="settings-page" class="page">
+      <div class="settings-wrap">
+       <div class="settings-intro"><h2>Configuración</h2><p>Conecta tus fuentes de contenido. Los datos se guardan localmente en este dispositivo.</p></div>
+       <div class="setting-block"><h3>CONEXIONES</h3>
+        <div class="connection-card"><div><b>Xtream Codes API</b><small>Servidor, usuario y contraseña de tu proveedor</small><span id="xt-status" class="status-text">Sin configurar</span></div><button class="secondary" id="edit-xtream">Configurar</button></div>
+        <div class="connection-card"><div><b>Portal / MAC (Stalker)</b><small>Dirección del portal y MAC registrada con tu proveedor</small><span id="pt-status" class="status-text">Sin configurar</span></div><button class="secondary" id="edit-portal">Configurar</button></div>
+       </div>
+       <div class="setting-block"><h3>REPRODUCCIÓN</h3><label class="setting-row">Reproducción automática <input id="autoplay" type="checkbox" checked></label><label class="setting-row">Mostrar títulos y controles del reproductor <input id="show-osd" type="checkbox" checked></label></div>
+       <div class="setting-block"><h3>PRIVACIDAD Y DATOS</h3><div class="setting-row"><span>Historial de reproducción</span><button id="clear-history" class="danger">Borrar historial</button></div><div class="setting-row"><span>Canales favoritos</span><button id="clear-favs" class="danger">Vaciar favoritos</button></div></div>
+       <div class="setting-block"><h3>INFORMACIÓN</h3><p class="muted">XuperTV · Adaptación web para VIDAA. El funcionamiento de video depende de los formatos y códecs admitidos por el televisor Hisense.</p><p class="muted">Los datos de conexión se almacenan en localStorage del navegador del televisor. No publiques credenciales ni archivos de configuración privados en GitHub.</p></div>
+      </div>
+    </section>
+  </main>
+</div>
+<div id="modal" class="modal hidden"><div class="modal-panel"><button id="modal-close" class="modal-close">×</button><h2 id="modal-title">Conexión</h2><p id="modal-desc" class="muted"></p><form id="connection-form"></form><div id="modal-status" class="modal-status"></div></div></div>
+<div id="player" class="player hidden"><video id="video" playsinline autoplay></video><div class="player-shade"></div><div class="player-top"><div><span id="player-kind" class="tag">EN VIVO</span><h2 id="player-title">Reproduciendo</h2></div><button id="player-close" class="icon-btn">✕</button></div><div class="player-controls"><button id="play-pause" class="primary">Ⅱ Pausar</button><span id="player-status">Preparando reproducción…</span><button id="player-fav" class="secondary">☆ Favorito</button></div></div>
+<div id="toast" class="toast"></div>
+<script src="app.js"></script>
+</body></html>
